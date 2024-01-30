@@ -3,31 +3,8 @@ import logging
 import os
 import time
 
-import httpx
-from openai import OpenAI
-from openai.types.beta import Assistant
-
-from entity import get_tools
+from config import client
 from fmpData import available_functions
-
-OPENAI_API_KEY = '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'
-
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-
-client = httpx.Client(proxy='http://127.0.0.1:1080')
-client = OpenAI(http_client=client)
-
-
-def create_assistant(model: str) -> Assistant:
-    tools = get_tools()
-    # Creating an assistant with specific instructions and tools
-
-    assistant = client.beta.assistants.create(
-        instructions="Act as a financial analyst by accessing detailed financial data through the Financial Modeling Prep API. Your capabilities include analyzing key metrics, comprehensive financial statements, vital financial ratios, and tracking financial growth trends. use chinese answer question",
-        model=model,
-        tools=tools
-    )
-    return assistant
 
 
 def receive_msg(msg: str, thread_id, assistant_id) -> str:
@@ -45,14 +22,14 @@ def receive_msg(msg: str, thread_id, assistant_id) -> str:
         instructions="Please address the user as Jane Doe. The user has a premium account."
     )
     try:
-        resp = run_assistan(run)
+        resp = run_assistant(run, thread_id)
     except Exception as e:
         logging.error(e)
         client.beta.threads.runs.cancel(run_id=run.id, thread_id=thread_id)
     return resp
 
 
-def run_assistan(run):
+def run_assistant(run, thread_id):
     resp = ''
     while True:
         run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run.id)
@@ -102,8 +79,7 @@ def run_assistan(run):
 
         elif run.status == "failed":
             print("Run failed.")
-            resp = "Run failed."
-            break
+            return run.last_error
 
         elif run.status in ["in_progress", "queued"]:
             print(f"Run is {run.status}. Waiting...")
@@ -112,9 +88,3 @@ def run_assistan(run):
         else:
             print(f"Unexpected status: {run.status}")
             break
-
-
-# assistant = create_assistant("gpt-3.5-turbo-1106")
-assistant_id = 'asst_IIV6hcqRXjxQlTQGsaJn1V5n'
-thread = client.beta.threads.create()
-thread_id = thread.id

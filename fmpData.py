@@ -38,7 +38,34 @@ def get_advanced_dcf_valuation(ticker):
     return json.dumps(requests.get(url).json())
 
 
+def get_levered_dcf_valuation(symbol):
+    url = f'https://financialmodelingprep.com/api/v4/advanced_levered_discounted_cash_flow?symbol={symbol}&{apikey1}'
+    return json.dumps(requests.get(url).json())
 
+
+def get_price_target(symbol):
+    url = f'https://financialmodelingprep.com/api/v4/price-target?symbol={symbol}&{apikey1}'
+    return json.dumps(requests.get(url).json())
+
+
+def get_price_target_summary(symbol):
+    url = f'https://financialmodelingprep.com/api/v4/price-target-summary?symbol={symbol}&{apikey1}'
+    return json.dumps(requests.get(url).json())
+
+
+def get_price_target_by_company(company):
+    url = f'https://financialmodelingprep.com/api/v4/price-target-analyst-company?company={company}&{apikey1}'
+    return json.dumps(requests.get(url).json())
+
+
+def get_price_target_consensus(symbol):
+    url = f'https://financialmodelingprep.com/api/v4/price-target-consensus?symbol={symbol}&{apikey1}'
+    return json.dumps(requests.get(url).json())
+
+
+def get_stock_price_change(symbol):
+    url = f'https://financialmodelingprep.com/api/v3/stock-price-change/{symbol}&{apikey1}'
+    return json.dumps(requests.get(url).json())
 
 
 available_functions = {
@@ -57,17 +84,14 @@ available_functions = {
     "get_enterprise_values": fmpsdk.enterprise_values,
     "get_dcf_valuation": fmpsdk.discounted_cash_flow,
     "get_advanced_dcf_valuation": get_advanced_dcf_valuation,
-    # "get_levered_dcf_valuation": fmpsdk.levered_dcf_valuation,
-    "get_company_rating": fmpsdk.company_profile(),
+    "get_levered_dcf_valuation": get_levered_dcf_valuation,
+    "get_company_rating": fmpsdk.company_profile,
     "get_historical_rating": fmpsdk.historical_rating,
-    # "get_price_target": fmpsdk.,
-    # "get_price_target_summary": fmpsdk.,
-    # "get_price_target_by_company": fmpsdk.price_target_by_company,
-    # "get_price_target_consensus": fmpsdk.price_target_consensus,
-    # "get_price_target_RSS_Feed": fmpsdk.price_target_RSS_Feed,
+    "get_price_target": get_price_target,
+    "get_price_target_summary": get_price_target_summary,
+    "get_price_target_by_company": get_price_target_by_company,
+    "get_price_target_consensus": get_price_target_consensus,
     "get_full_quote": fmpsdk.quote,
-    # "get_stock_price_change": fmpsdk.stock,
+    "get_stock_price_change": get_stock_price_change,
 
 }
-
-

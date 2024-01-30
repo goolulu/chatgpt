@@ -7,8 +7,16 @@ db_config = {
     'user': 'root',
     'password': 'lifeng888jhWfhpo~*#',
     'database': 'chatgpt',
-    'port': '3306'  # 通常 MySQL 默认端口是 3306
+    'port': '3306'
 }
+
+# db_config = {
+#     'host': '47.106.98.73',
+#     'user': 'root',
+#     'password': 'lifeng888jhWfhpo~*#',
+#     'database': 'chatgpt',
+#     'port': '3306'  # 通常 MySQL 默认端口是 3306
+# }
 
 # 创建 MySQL 连接引擎
 engine = create_engine(
