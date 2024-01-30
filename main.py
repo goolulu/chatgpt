@@ -4,7 +4,7 @@ from chatgpt import receive_msg
 from config import client
 from entity import get_tools
 from entity.gpt.assistant import get_assistant
-from entity.gpt.user_assistant import get_user_assistant
+from entity.gpt.user_assistant import get_user_assistant, update_user_assistant
 
 app = Flask(__name__)
 
@@ -34,7 +34,7 @@ def create_assistant():
         model=assistant_config.model,
         tools=tools
     )
-    assistant_config.id = assistant.id
+    update_user_assistant(assistant.id)
     return 'success'
 
 

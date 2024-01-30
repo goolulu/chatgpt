@@ -16,3 +16,8 @@ class UserAssistant(Base):
 
 def get_user_assistant() -> UserAssistant:
     return session.query(UserAssistant).all()
+
+
+def update_user_assistant(assistant_id):
+    session.query(UserAssistant).filter_by(user_id=1).update({'assistant_id': assistant_id})
+    session.commit()
