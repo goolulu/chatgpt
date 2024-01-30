@@ -8,10 +8,6 @@ import fmpsdk
 import requests
 import inspect
 
-load_dotenv('api.env')
-apikey1 = os.environ.get("apikey")
-
-BASE_URL = 'https://financialmodelingprep.com/api/v3/'
 
 
 def calculate_execution_time(func):
@@ -27,44 +23,44 @@ def calculate_execution_time(func):
 
 
 @calculate_execution_time
-def get_financial_score(symbol: str):
-    url = f'https://financialmodelingprep.com/api/v4/score?symbol={symbol}&apikey={apikey1}'
+def get_financial_score(symbol: str, apikey:str):
+    url = f'https://financialmodelingprep.com/api/v4/score?symbol={symbol}&apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
 @calculate_execution_time
-def get_advanced_dcf_valuation(ticker):
-    url = f'https://financialmodelingprep.com/api/v4/advanced_discounted_cash_flow?symbol={ticker}&apikey={apikey1}'
+def get_advanced_dcf_valuation(symbol, apikey:str):
+    url = f'https://financialmodelingprep.com/api/v4/advanced_discounted_cash_flow?symbol={symbol}&apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
-def get_levered_dcf_valuation(symbol):
-    url = f'https://financialmodelingprep.com/api/v4/advanced_levered_discounted_cash_flow?symbol={symbol}&apikey={apikey1}'
+def get_levered_dcf_valuation(symbol, apikey:str):
+    url = f'https://financialmodelingprep.com/api/v4/advanced_levered_discounted_cash_flow?symbol={symbol}&apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
-def get_price_target(symbol):
-    url = f'https://financialmodelingprep.com/api/v4/price-target?symbol={symbol}&apikey={apikey1}'
+def get_price_target(symbol, apikey:str):
+    url = f'https://financialmodelingprep.com/api/v4/price-target?symbol={symbol}&apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
-def get_price_target_summary(symbol):
-    url = f'https://financialmodelingprep.com/api/v4/price-target-summary?symbol={symbol}&apikey={apikey1}'
+def get_price_target_summary(symbol, apikey:str):
+    url = f'https://financialmodelingprep.com/api/v4/price-target-summary?symbol={symbol}&apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
-def get_price_target_by_company(company):
-    url = f'https://financialmodelingprep.com/api/v4/price-target-analyst-company?company={company}&apikey={apikey1}'
+def get_price_target_by_company(company, apikey:str):
+    url = f'https://financialmodelingprep.com/api/v4/price-target-analyst-company?company={company}&apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
-def get_price_target_consensus(symbol):
-    url = f'https://financialmodelingprep.com/api/v4/price-target-consensus?symbol={symbol}&apikey={apikey1}'
+def get_price_target_consensus(symbol, apikey:str):
+    url = f'https://financialmodelingprep.com/api/v4/price-target-consensus?symbol={symbol}&apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
-def get_stock_price_change(symbol):
-    url = f'https://financialmodelingprep.com/api/v3/stock-price-change/{symbol}&apikey={apikey1}'
+def get_stock_price_change(symbol, apikey:str):
+    url = f'https://financialmodelingprep.com/api/v3/stock-price-change/{symbol}&apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
