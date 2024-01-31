@@ -1,8 +1,8 @@
 from sqlalchemy import Column, String, insert, Integer
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.sql import update
 
-from datasource.dataSourceConfig import session
+from datasource.dataSourceConfig import engine, Session
 
 Base = declarative_base()
 
@@ -23,5 +23,8 @@ class Assistant(Base):
 
 
 def get_assistant() -> Assistant:
-    return session.query(Assistant).all()
+    return Session().query(Assistant).all()
 
+
+def get_assistant_byid(id) -> Assistant:
+    return Session().query(Assistant).filter_by(id=id).first()

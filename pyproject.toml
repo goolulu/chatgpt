@@ -3,7 +3,6 @@ name = "fin-assistant"
 version = "0.1.0"
 description = ""
 authors = ["黄仁宁 <huangrenning@winbulls.com>"]
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"

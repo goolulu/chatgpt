@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
-from datasource.dataSourceConfig import session
+from datasource.dataSourceConfig import Session
 
 Base = declarative_base()
 
@@ -30,10 +30,5 @@ class FunctionParameters(Base):
 
 
 def get_all_function_param():
-    return session.query(FunctionParameters).all()
+    return Session().query(FunctionParameters).all()
 
-
-if __name__ == '__main__':
-    functions = get_all_function_param()
-    for function in functions:
-        print(function.name)

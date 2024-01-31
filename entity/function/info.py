@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from datasource.dataSourceConfig import session
+from datasource.dataSourceConfig import Session
 
 Base = declarative_base()
 
@@ -19,10 +19,5 @@ class FunctionInfo(Base):
 
 
 def get_all_function():
-    return session.query(FunctionInfo).all()
+    return Session().query(FunctionInfo).all()
 
-
-if __name__ == '__main__':
-    functions = get_all_function()
-    for function in functions:
-        print(function.name)

@@ -20,7 +20,7 @@ db_config = {
 
 # 创建 MySQL 连接引擎
 engine = create_engine(
-    f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}:{db_config['port']}/{db_config['database']}")
+    f"mysql+mysqlconnector://{db_config['user']}:{db_config['password']}@{db_config['host']}:{db_config['port']}/{db_config['database']}",
+    echo=True)
 
 Session = sessionmaker(bind=engine)
-session = Session()
