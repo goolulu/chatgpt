@@ -60,7 +60,7 @@ def get_price_target_consensus(symbol, apikey:str):
 
 
 def get_stock_price_change(symbol, apikey:str):
-    url = f'https://financialmodelingprep.com/api/v3/stock-price-change/{symbol}&apikey={apikey}'
+    url = f'https://financialmodelingprep.com/api/v3/stock-price-change/{symbol}?apikey={apikey}'
     return json.dumps(requests.get(url).json())
 
 
