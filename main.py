@@ -51,7 +51,7 @@ def create_assistant(id):
     return 'success'
 
 
-@app.route("/change_mode", method=['GET'])
+@app.route("/change_mode", methods=['GET'])
 def change_mode():
     mode = request.args['mode']
     if not mode:
