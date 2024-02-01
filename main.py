@@ -51,5 +51,15 @@ def create_assistant(id):
     return 'success'
 
 
+@app.route("/change_mode", method=['GET'])
+def change_mode():
+    mode = request.args['mode']
+    if not mode:
+        return '没有输入模型'
+    ua = get_user_assistant()
+    client.beta.assistants.update(ua.assistant_id, mode=mode)
+    return 'success'
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
