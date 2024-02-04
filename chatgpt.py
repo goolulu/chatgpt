@@ -73,7 +73,12 @@ def run_assistant(run, thread_id):
                 if message.role == 'assistant':
                     resp += f'{message_content}\n'
                     print(f"{role_label}: {message_content}\n")
-                    return resp
+                    res = {
+                        'total_tokens': run.usage.total_tokens,
+                        'msg': resp
+                    }
+                    return res
+
                 print(f"{role_label}: {message_content}\n")
                 # Exit the loop after processing the completed run
 
